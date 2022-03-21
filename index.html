@@ -1,3 +1,72 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
+	<head>
+		<title>Tenuto [RUBATO Save Editor]</title>
+		<link rel="stylesheet" href="style.css">
+		<script type="text/javascript" src="main.js"></script>
+	</head>
+	<body>
+		<div class="topper">
+			<img src="logo.png" alt="TENUTO" class="title-img">
+			<h1>RUBATO Save Editor</h1>
+		</div>
+
+		<fieldset>
+			<legend>Stats</legend>
+			<label>Deaths</label>
+			<input id="deaths" type="number">
+
+			<label>Level</label>
+			<input id="playerlvl" type="number">
+
+			<label>HP</label>
+			<input id="hp" type="number">
+
+			<label>Money</label>
+			<input id="money" type="number">
+		</fieldset>
+
+		<fieldset>
+			<legend>Story</legend>
+
+			<label>Room</label>
+			<select id="room">
+				<option value="bakery_1">Bakery - Room 1</option>
+				<option value="bakery_2">Bakery - Room 2</option>
+				<option value="bakery_3">Bakery - Room 3</option>
+				<option value="bakery_4">Bakery - Room 4</option>
+			</select>
+
+			<label>Objective</label>
+			<input id="objective" type="number">
+		</fieldset>
+
+		<fieldset>
+			<legend>Output</legend>
+			<button onclick="generate()">Generate</button>
+			<textarea id="output" readonly></textarea>
+			<button onclick="copyToClipboard('output')">Copy to clipboard</button>
+		</fieldset>
+
+		<figure>
+			<figcaption>Confused? Here, have an E.</figcaption>
+			<a href="https://landy.rs/" target="_blank" rel="nofollow noopener" referrerpolicy="origin"><img src="https://img.itch.zone/aW1nLzgyMDE3NzMuZ2lm/original/dWHWld.gif" alt="An animated image of a dancing letter E." title="HE is Evil" loading="lazy"></a>
+		</figure>
+	</body>
 </html>
+
+<!--[save]
+varea="2F01000002000000000000000000000000000000000000000000000000001440"
+objective="5.000000"
+deaths="5.000000"
+playerlvl="2.000000"
+planetbits="2F0100001C00000000000000000000000000304000000000000000000000000000000000000000000000004000000000000000000000264000000000000000000000F03F000000000000000000003340000000000000000000003440000000000000000000003940000000000000000000001C40000000000000000000000840000000000000000000002040000000000000000000002C40000000000000000000003140000000000000000000003240000000000000000000003540000000000000000000003740000000000000000000003840000000000000000000002240000000000000000000002E40000000000000000000003640000000000000000000002A40000000000000000000001040000000000000000000003A40000000000000000000003B40000000000000000000002840000000000000000000002440000000000000000000001440000000000000000000001840"
+inventory1="2F0100000600000000000000000000000000004000000000000000000000144000000000000000000000F03F000000000000000000000840000000000000000000001040000000000000000000001840"
+inventory2="2F0100000500000000000000000000000000000000000000000000000000F03F000000000000000000000040000000000000000000000840000000000000000000001040"
+event3="2F0100000300000000000000000000000000000000000000000000000000F03F000000000000000000000040"
+event2="2F01000005000000000000000000000000002040000000000000000000002A40000000000000000000002440000000000000000000002840000000000000000000002640"
+event1="2F0100000300000000000000000000000000000000000000000000000000004000000000000000000000F03F"
+room="rm_bakery_1"
+hp="5.000000"
+money="55.000000"
+-->
