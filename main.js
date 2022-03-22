@@ -2,17 +2,18 @@ function copyToClipboard(element) {
 	navigator.clipboard.writeText(document.getElementById(element).value);
 }
 
-function addEntry(label) {
-	return `\n${label}="${document.getElementById(label).value}`
+function addEntry(label, prefix = "", suffix = "") {
+	return `\n${label}="${prefix}${document.getElementById(label).value}${suffix}"`
 }
 
 function generate() {
 	var output = "[save]"
-	output += addEntry("objective") + ".000000"
-	output += addEntry("deaths") + ".000000"
-	output += addEntry("playerlvl") + ".000000"
-	output += addEntry("hp") + ".000000"
-	output += addEntry("money") + ".000000"
+	output += addEntry("objective", "", ".000000")
+	output += addEntry("deaths", "", ".000000")
+	output += addEntry("playerlvl", "", ".000000")
+	output += addEntry("hp", "", ".000000")
+	output += addEntry("money", "", ".000000")
+	output += addEntry("room", "rm_", "")
 	document.getElementById("output").value = output
 }
 

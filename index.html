@@ -15,16 +15,16 @@
 		<fieldset>
 			<legend>Stats</legend>
 			<label>Deaths</label>
-			<input id="deaths" type="number">
+			<input id="deaths" type="number" value="0">
 
 			<label>Level</label>
-			<input id="playerlvl" type="number">
+			<input id="playerlvl" type="number" value="0">
 
 			<label>HP</label>
-			<input id="hp" type="number">
+			<input id="hp" type="number" value="5">
 
 			<label>Money</label>
-			<input id="money" type="number">
+			<input id="money" type="number" value="0">
 		</fieldset>
 
 		<fieldset>
@@ -32,14 +32,84 @@
 
 			<label>Room</label>
 			<select id="room">
-				<option value="bakery_1">Bakery - Room 1</option>
-				<option value="bakery_2">Bakery - Room 2</option>
-				<option value="bakery_3">Bakery - Room 3</option>
-				<option value="bakery_4">Bakery - Room 4</option>
+				<optgroup label="Bakery Rooms">
+					<option value="bakery_1">Bakery - Room 1</option>
+					<option value="bakery_7">Bakery - Dark Shortcut</option>
+					<option value="bakery_2">Bakery - Room 2</option>
+					<option value="bakery_sub_2">Bakery - Underneath</option>
+					<option value="bakery_sub_5">Bakery - Upper Crust</option>
+					<option value="bakery_6">Bakery - Shortcut?</option>
+					<option value="bakery_3">Bakery - Room 3</option>
+					<option value="bakery_sub_4">Bakery - Rocket Dash</option>
+					<option value="bakery_4">Bakery - Room 4</option>
+					<option value="bakery_sub_6">Bakery - Runaway</option>
+					<option value="bakery_5">Bakery - Castle Foyer</option>
+					<option value="bakery_virtual_world_1">Bakery - Virtual World</option>
+					<option value="bakery_greens">Bakery - Greens</option>
+					<option value="bakery_Him">Bakery - Phil</option>
+					<option value="bakery_8">Bakery - Castle Tower</option>
+					<option value="bakery_bar">Bakery - Bar</option>
+					<option value="bakery_race">Bakery - Race</option>
+					<option value="bakery_boss_1">Bakery - Dumpling King [Phase 1]</option>
+					<option value="bakery_boss_2">Bakery - Dumpling King [Phase 2]</option>
+					<option value="bakery_boss_3">Bakery - Throne Room</option>
+					<option value="bakery_sub_7">Bakery - Rocket Launcher Maze</option>
+				</optgroup>
+				<optgroup label="Other Rooms">
+					<option value="tokki">Tokki</option>
+				</optgroup>
+				<optgroup label="Meta Rooms">
+					<option value="intro_start">Intro Start</option>
+					<option value="intro_1">Intro 1</option>
+					<option value="intro_2">Intro 2</option>
+					<option value="intro_3">Intro 3</option>
+					<option value="intro_4">Intro 4</option>
+					<option value="intro_5">Intro 5</option>
+					<option value="intro_6">Intro 6</option>
+					<option value="intro_7">Intro 7</option>
+					<option value="intro_office">Intro Office</option>
+					<option value="intro_fall">Intro Fall</option>
+					<option value="planet_creation">Planet Creation</option>
+					<option value="bakery_prerace">Pre-Race</option>
+					<option value="vw_intro">Virtual World Intro</option>
+					<option value="demo_explode">Demo Car Explode</option>
+					<option value="demo_credits">Demo Credits</option>
+					<option value="error_new">Error Screen</option>
+					<option value="controltest">Control Test</option>
+					<option value="control_bind_init">Gamepad Setup</option>
+					<option value="init">Loading Screen</option>
+					<option value="titlescreens">Title</option>
+					<option value="menu">Menu</option>
+					<option value="first_boot">First Bootup</option>
+				</optgroup>
+				<optgroup label="Inaccessible Rooms">
+					<option value="bakery_1old">Old Bakery 1</option>
+					<option value="bakery_1_less_old">Less-Old Bakery 1</option>
+					<option value="bakery_4old">Old Bakery 4</option>
+					<option value="promo_one_day">1 Day Promo</option>
+					<option value="endless1">Endless Menu</option>
+					<option value="endless2">Endless Level</option>
+					<option value="water_test">Water Test</option>
+					<option value="sub_template">Sublevel Template</option>
+					<option value="bakery_template">Bakery Template</option>
+					<option value="world_map">World Map</option>
+					<option value="world_map_test">World Map Test</option>
+					<option value="bakery_race_test">Race Test</option>
+					<option value="bakery_sub_3">Bakery Sublevel 3</option>
+					<option value="gadget_development">Gadget Test</option>
+					<option value="sub_imposter">Imposter</option>
+					<option value="template_editor">Editor Template</option>
+					<option value="bomb_survival">Bomb Survival</option>
+					<option value="template">Template</option>
+					<option value="credits">Old Credits</option>
+					<option value="testing_zone">Testing Zone</option>
+					<option value="shop_test">Shop Test</option>
+					<option value="error">Old Error Screen</option>
+				</optgroup>
 			</select>
 
 			<label>Objective</label>
-			<input id="objective" type="number">
+			<input id="objective" type="number" value="0">
 		</fieldset>
 
 		<fieldset>
