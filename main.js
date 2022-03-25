@@ -15,6 +15,9 @@ function generate() {
 	output += generateDSList("planetbits");
 	output += generateDSList("inventory1");
 	output += generateDSList("inventory2");
+	output += generateDSList("event1");
+	output += generateDSList("event2");
+	output += generateDSList("event3");
 	output += addEntry("room", "rm_", "");
 	output += addEntry("hp", "", ".000000");
 	output += addEntry("money", "", ".000000");
@@ -22,7 +25,7 @@ function generate() {
 }
 
 function generateDSList(id) {
-	let output = "\ninventory2=\"2F01";
+	let output = `\n${id}=\"2F01`;
 	let items = document.getElementById(id).childNodes;
 	let lengthString = items.length.toString(16).toUpperCase();
 	output += "0".repeat(6 - lengthString.length) + lengthString + "00000";
