@@ -2,22 +2,114 @@ function copyToClipboard(element) {
 	navigator.clipboard.writeText(document.getElementById(element).value);
 }
 
-function addEntry(label, prefix = "", suffix = "") {
+function addEntry(label, prefix, suffix) {
 	return `\n${label}="${prefix}${document.getElementById(label).value}${suffix}"`
 }
 
 function generate() {
-	var output = "[save]"
-	output += addEntry("objective", "", ".000000")
-	output += addEntry("deaths", "", ".000000")
-	output += addEntry("playerlvl", "", ".000000")
-	output += addEntry("hp", "", ".000000")
-	output += addEntry("money", "", ".000000")
-	output += addEntry("room", "rm_", "")
-	document.getElementById("output").value = output
+	let output = "[save]";
+	output += addEntry("objective", "", ".000000");
+	output += addEntry("deaths", "", ".000000");
+	output += addEntry("playerlvl", "", ".000000");
+	output += addEntry("hp", "", ".000000");
+	output += addEntry("money", "", ".000000");
+	output += addEntry("room", "rm_", "");
+	output += generateDSList("inventory2");
+	document.getElementById("output").value = output;
 }
 
+function generateDSList(id) {
+	let output = "\ninventory2=\"2F01";
+	let items = document.getElementById(id).childNodes;
+	let lengthString = items.length.toString(16).toUpperCase();
+	output += "0".repeat(6 - lengthString.length) + lengthString + "00000";
+	items.forEach(item => {
+		output += floatToGMLHex(item.value);
+	});
+	return output
+}
 
+function dec2bin(dec) {
+	return (dec >>> 0).toString(2);
+}
+
+function floatToGMLHex(number) {
+	//for anyone reading this, i don't know what i'm doing!
+	//if you have any recommendations for a better method, DM me at @GTcreyon on Twitter, or creyon#1828 on Discord :3
+
+	if (number == 0)
+	{
+		return "0".repeat(24)
+	} else {
+		let sign = Math.sign(number)
+		let integral = Math.floor(number * sign)
+		
+		let fractional = number
+		let mantissa = ""
+		for (let i = 0; i < 52; i++) {
+			fractional %= 1
+			fractional *= 2
+			if (fractional >= 1) { //grr not enough bits in javascript numbers so i have to use strings >:C
+				mantissa += "1"
+			} else {
+				mantissa += "0"
+			}
+		}
+
+		//basically we now have XXXX.YYY
+		//we want 1.XXX * 2 ^ YYY, which means we need to introduce an exponent and shift the mantissa
+		let exponent = 0
+		if (integral >= 2) {
+			let integralString = dec2bin(integral).substring(1)
+			exponent = Math.log2(integral)
+			mantissa = integralString + mantissa
+			mantissa = mantissa.substring(0, 51)
+		} else if (integral < 1) {
+			while (mantissa[0] == "0") {
+				mantissa = mantissa.substring(1) + "0"
+				exponent -= 1
+			}
+			mantissa = mantissa.substring(1) + "0"
+			mantissa = mantissa.substring(1) + "0"
+			exponent -= 1
+			mantissa = dec2bin(integral % 1) + mantissa
+		}
+		exponent += 1023 //account for bias, this is subtracted from when the value is processed in-engine
+		let exponentString = dec2bin(exponent)
+		while (exponentString.length < 11)
+		{
+			exponentString = "0" + exponentString
+		}
+		let signString = "0"
+		if (sign == -1) {
+			signString = "1"
+		}
+		let fullValue = `${signString}${exponentString}${mantissa}`
+		let hexValue = parseInt(reverseEntry(fullValue), 2).toString(16).toUpperCase()
+		return "0".repeat(24 - hexValue.length) + hexValue
+	}
+}
+
+function reverseEntry(input) {
+	let revString = ""
+	for (let i = 0; i < input.length / 8; i++) {
+		revString = input.substring(i * 8, i * 8 + 8) + revString;
+	}
+	return revString
+}
+
+function addItem() {
+	const itemData = ["Tongue", "Sword", "Rocket Launcher", "Camera", "Crowbar"];
+	let newSelect = document.createElement("select");
+
+	for (let i = 0; i < itemData.length; i++) {
+		let newOption = document.createElement("option");
+		newOption.textContent = itemData[i];
+		newOption.value = i;
+		newSelect.appendChild(newOption);
+	}
+	document.getElementById("inventory2").appendChild(newSelect);
+}
 /*
 [save]
 varea="2F01000002000000000000000000000000000000000000000000000000001440"
