@@ -8,13 +8,16 @@ function addEntry(label, prefix, suffix) {
 
 function generate() {
 	let output = "[save]";
+	output += "\nvarea=\"2F01000002000000000000000000000000000000000000000000000000001440\"";
 	output += addEntry("objective", "", ".000000");
 	output += addEntry("deaths", "", ".000000");
 	output += addEntry("playerlvl", "", ".000000");
+	output += generateDSList("planetbits");
+	output += generateDSList("inventory1");
+	output += generateDSList("inventory2");
+	output += addEntry("room", "rm_", "");
 	output += addEntry("hp", "", ".000000");
 	output += addEntry("money", "", ".000000");
-	output += addEntry("room", "rm_", "");
-	output += generateDSList("inventory2");
 	document.getElementById("output").value = output;
 }
 
@@ -98,17 +101,76 @@ function reverseEntry(input) {
 	return revString
 }
 
-function addItem() {
-	const itemData = ["Tongue", "Sword", "Rocket Launcher", "Camera", "Crowbar"];
+function addListItem(list) {
+	const data = {
+		"planetbits": [
+			"The first one!",
+			"To the right of the first one!",
+			"Under the first one?",
+			"Top of the World!",
+			"Dumpling King Defeated",
+			"Explosive Shortcut",
+			"Even More Explosive Shortcu",
+			"Locked Inside",
+			"Elevator Maintenance",
+			"WELCOME TO VIRTUAL WORLD",
+			"Virtua Swinger",
+			"Shortcut?",
+			"Dark Shortcut",
+			"*Record Scratch* *Freeze Frame*",
+			"Mad Rocket Dash!",
+			"Soda Addiction",
+			"Licking Secret",
+			"Mad Rocket Tower!",
+			"Bakery Voyager",
+			"Upper Crust",
+			"Upper Crust - Water Switch",
+			"Oops, I'm Offscreen",
+			"Bakery Race Champion",
+			"Planet Bit Switch 1",
+			"Runaway Planet Bit",
+			"Weird Backroom",
+			"Rocket Launcher Maze",
+			"Rocket Launcher Bonus",
+		],
+		"event1": [
+			"???",
+			"Virtual World Switch",
+			"Room 4 Switch",
+		],
+		"event2": [
+			"Encountered Tokki (Old)",
+			"Won Race",
+			"Started Race",
+			"???",
+			"???",
+			"???",
+			"???",
+			"???",
+			"???",
+			"Encountered Tokki",
+			"Encountered Soda Cat",
+			"???",
+			"Encountered Dumpling Dude",
+			"Encountered Phil",
+		],
+		"event3": [
+			"Encountered Dumpling King",
+			"Completed Dumpling King Phase 1",
+			"Defeated Dumpling King",
+		],
+		"inventory1": ["Default", "Oldbato", "Peabato", "Bottle", "EN-EF-TEE", "Metal", "VR"],
+		"inventory2": ["Tongue", "Sword", "Rocket Launcher", "Camera", "Crowbar"],
+	};
 	let newSelect = document.createElement("select");
-
-	for (let i = 0; i < itemData.length; i++) {
+	
+	for (let i = 0; i < data[list].length; i++) {
 		let newOption = document.createElement("option");
-		newOption.textContent = itemData[i];
+		newOption.textContent = data[list][i];
 		newOption.value = i;
 		newSelect.appendChild(newOption);
 	}
-	document.getElementById("inventory2").appendChild(newSelect);
+	document.getElementById(list).appendChild(newSelect);
 }
 /*
 [save]
