@@ -6,6 +6,8 @@ function addEntry(label, prefix, suffix) {
 	return `\n${label}="${prefix}${document.getElementById(label).value}${suffix}"`
 }
 
+// Run when generating the output file.
+// Generates a string containing the save data, and stores it in the output field.
 function generate() {
 	let output = "[save]";
 	output += "\nvarea=\"2F01000002000000000000000000000000000000000000000000000000001440\"";
@@ -24,6 +26,7 @@ function generate() {
 	document.getElementById("output").value = output;
 }
 
+// Generate and return a DS List containing data from child items of an element with the given ID.
 function generateDSList(id) {
 	let output = `\n${id}=\"2F01`;
 	let items = document.getElementById(id).childNodes;
@@ -36,14 +39,13 @@ function generateDSList(id) {
 	return output
 }
 
+// Converts from decimal value to a binary string.
 function dec2bin(dec) {
 	return (dec >>> 0).toString(2);
 }
 
+// Convert a float to hexadecimal format that GameMaker can read.
 function floatToGMLHex(number) {
-	//for anyone reading this, i don't know what i'm doing!
-	//if you have any recommendations for a better method, DM me at @GTcreyon on Twitter, or creyon#1828 on Discord :3
-
 	if (number == 0)
 	{
 		return "0".repeat(24)
@@ -56,15 +58,15 @@ function floatToGMLHex(number) {
 		for (let i = 0; i < 52; i++) {
 			fractional %= 1
 			fractional *= 2
-			if (fractional >= 1) { //grr not enough bits in javascript numbers so i have to use strings >:C
+			if (fractional >= 1) { // Javascript integers don't have enough bits to be used with bitwise operators, so we use strings instead.
 				mantissa += "1"
 			} else {
 				mantissa += "0"
 			}
 		}
 
-		//basically we now have XXXX.YYY
-		//we want 1.XXX * 2 ^ YYY, which means we need to introduce an exponent and shift the mantissa
+		// We now have XXXX.YYY
+		// We want 1.XXX * 2 ^ YYY, which means we need to introduce an exponent and shift the mantissa.
 		let exponent = 0
 		if (integral >= 2) {
 			let integralString = dec2bin(integral).substring(1)
@@ -81,7 +83,7 @@ function floatToGMLHex(number) {
 			exponent -= 1
 			mantissa = dec2bin(integral % 1) + mantissa
 		}
-		exponent += 1023 //account for bias, this is subtracted from when the value is processed in-engine
+		exponent += 1023 // Account for bias - this is subtracted from when the value is processed in-engine.
 		let exponentString = dec2bin(exponent)
 		while (exponentString.length < 11)
 		{
@@ -176,20 +178,3 @@ function addListItem(list) {
 	}
 	document.getElementById(list).appendChild(newSelect);
 }
-/*
-[save]
-varea="2F01000002000000000000000000000000000000000000000000000000001440"
-objective="5.000000"
-deaths="5.000000"
-playerlvl="2.000000"
-planetbits="2F0100001C00000000000000000000000000304000000000000000000000000000000000000000000000004000000000000000000000264000000000000000000000F03F000000000000000000003340000000000000000000003440000000000000000000003940000000000000000000001C40000000000000000000000840000000000000000000002040000000000000000000002C40000000000000000000003140000000000000000000003240000000000000000000003540000000000000000000003740000000000000000000003840000000000000000000002240000000000000000000002E40000000000000000000003640000000000000000000002A40000000000000000000001040000000000000000000003A40000000000000000000003B40000000000000000000002840000000000000000000002440000000000000000000001440000000000000000000001840"
-inventory1="2F0100000600000000000000000000000000004000000000000000000000144000000000000000000000F03F000000000000000000000840000000000000000000001040000000000000000000001840"
-inventory2="2F0100000500000000000000000000000000000000000000000000000000F03F000000000000000000000040000000000000000000000840000000000000000000001040"
-event3="2F0100000300000000000000000000000000000000000000000000000000F03F000000000000000000000040"
-event2="2F01000005000000000000000000000000002040000000000000000000002A40000000000000000000002440000000000000000000002840000000000000000000002640"
-event1="2F0100000300000000000000000000000000000000000000000000000000004000000000000000000000F03F"
-room="rm_bakery_1"
-hp="5.000000"
-money="55.000000"
--->
-*/
