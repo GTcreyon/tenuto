@@ -28,10 +28,11 @@ function generateDSList(id) {
 	let output = `\n${id}=\"2F01`;
 	let items = document.getElementById(id).childNodes;
 	let lengthString = items.length.toString(16).toUpperCase();
-	output += "0".repeat(6 - lengthString.length) + lengthString + "00000";
+	output += "0".repeat(6 - lengthString.length) + lengthString + "000000";
 	items.forEach(item => {
 		output += floatToGMLHex(item.value);
 	});
+	output += "\""
 	return output
 }
 
