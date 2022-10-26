@@ -165,7 +165,7 @@ function addListItem(list) {
 			"Completed Dumpling King Phase 1",
 			"Defeated Dumpling King",
 		],
-		"inventory1": ["Default", "Oldbato", "Peabato", "Bottle", "EN-EF-TEE", "Metal", "VR"],
+		"inventory1": ["Default", "Oldbato", "Peabato", "Bottle", "EN-EF-TEE", "Metal", "VR", "Sillybato", "My Man Toby", "Artist"],
 		"inventory2": ["Tongue", "Sword", "Rocket Launcher", "Camera", "Crowbar"],
 	};
 	let newSelect = document.createElement("select");
