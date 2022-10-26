@@ -116,7 +116,7 @@ function addListItem(list) {
 			"Top of the World!",
 			"Dumpling King Defeated",
 			"Explosive Shortcut",
-			"Even More Explosive Shortcu",
+			"Even More Explosive Shortcut",
 			"Locked Inside",
 			"Elevator Maintenance",
 			"WELCOME TO VIRTUAL WORLD",
